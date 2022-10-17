@@ -52,7 +52,7 @@ public class PetSittersTest {
         psList.addPetSitter(ps2);
         assertEquals(ps1, psList.getPetSitter("js1"));
         assertEquals(ps2, psList.getPetSitter("hp2"));
-        assertNull(psList.getPetSitter("xy3"));
+        assertEquals(null, psList.getPetSitter("xy3"));
     }
 
     @Test

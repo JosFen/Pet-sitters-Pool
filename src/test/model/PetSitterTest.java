@@ -52,10 +52,10 @@ class PetSitterTest {
 
     @Test
     public void testSetHrRate(){
-        testPetSitter1.setExperience(0);
-        assertEquals(0, testPetSitter1.getExperience());
-        testPetSitter1.setExperience(60);
-        assertEquals(60, testPetSitter1.getExperience());
+        testPetSitter1.setHrRate(0);
+        assertEquals(0.0, testPetSitter1.getHrRate());
+        testPetSitter1.setHrRate(60);
+        assertEquals(60.0, testPetSitter1.getHrRate());
     }
 
     @Test
