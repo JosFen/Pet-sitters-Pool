@@ -7,7 +7,7 @@ This application allows users to manage, view and maintain information of pet-si
 It allows users to **CRUD** *(create/read/update/delete)* information of pet-sitters.  
 Users can also select and view detailed information about a specific pet-sitter.
 #### *Who should use this application?*
-Any organizations (nonprofit or not) can use this application to create and manage a pool of pet-sitters that provide  
+Any organizations (nonprofit or not) can use this application to create and manage a pool of pet-sitters that provide 
 services to their clients.  
 Any individuals who need pet-sitting services can also use this application to keep track of pet-sitters found   
 in their cities for later usage, as well as to rate the pet-sitters used.
