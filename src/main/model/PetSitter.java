@@ -9,7 +9,7 @@ public class PetSitter {
     private final String lastName;         // last name of pet sitter
     private String city;                   // city location of pet sitter
     private int experience;                // years of experience
-    private int hrRate;                    // hourly rate requested by pet sitter, o for volunteer pet sitters
+    private double hrRate;                    // hourly rate requested by pet sitter, o for volunteer pet sitters
     private int rating = 0;                // rating of pet sitter, default (no rating yet) is 0
 
     /*
@@ -17,7 +17,7 @@ public class PetSitter {
      *           no less than 0.
      * EFFECTS:  Create a new pet sitter with required information, with the names formatted
      */
-    public PetSitter(String usrName, String firstName, String lastName, String city, int experience, int hrRate) {
+    public PetSitter(String usrName, String firstName, String lastName, String city, int experience, double hrRate) {
         this.usrId = usrName.toLowerCase() + (idStep++);
         this.firstName = firstName.substring(0, 1).toUpperCase() + firstName.substring(1).toLowerCase();
         this.lastName = lastName.toUpperCase();
@@ -57,14 +57,14 @@ public class PetSitter {
         this.experience = experience;
     }
 
-    public int getHrRate() {
+    public double getHrRate() {
         return this.hrRate;
     }
 
     // REQUIRES: hourly rate should be no less than 0
     // MODIFIES: this
     // EFFECTS:  Update pet sitter's hourly rate
-    public void setHrRate(int hrRate) {
+    public void setHrRate(double hrRate) {
         this.hrRate = hrRate;
     }
 
@@ -87,7 +87,7 @@ public class PetSitter {
 
     // EFFECTS: show information of a specific pet sitter.
     public String displayPetSitter() {
-        return this.getFullName() + "\t" + this.getCity() + "\t" + this.getExperience() + "\t"
-                + this.getHrRate() + "\t" + this.getRating() + "\n";
+        return this.getUsrId() + "\t" + this.getFullName() + "\t" + this.getCity() + "\t" + this.getExperience()
+                + "\t" + this.getHrRate() + "\t" + this.getRating() + "\n";
     }
 }

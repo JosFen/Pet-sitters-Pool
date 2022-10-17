@@ -3,6 +3,7 @@ package model;
 import java.util.ArrayList;
 import java.util.List;
 
+// Represent a collection of all PetSitters
 public class PetSitters {
     private final List<PetSitter> petSitters;
 
@@ -55,8 +56,8 @@ public class PetSitters {
 
     // EFFECTS: show information of all the pet sitters in the list
     public String showAllPetSitters() {
-        String petSitterPool = "Full Name" + "\t" + "City " + "\t" + "Experience" + "\t" + "Hourly Rate"
-                + "\t" + "Rating" + "\n";
+        String petSitterPool = "Pet-sitter ID" + "\t" + "Full Name" + "\t" + "City " + "\t" + "Experience" + "\t"
+                + "Hourly Rate" + "\t" + "Rating" + "\n";
         for (PetSitter ps : petSitters) {
             petSitterPool += ps.displayPetSitter();
         }

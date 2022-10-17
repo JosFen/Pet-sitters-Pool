@@ -19,10 +19,10 @@ Meanwhile, it would also be great if there is an application that allows pet par
 their own collections of pet-sitters found and used.
 ***
 ## User Stories
-- As a user, I want to be able to add and remove a pet-sitter to my pool of pet-sitters collection
+- As a user, I want to be able to add a pet-sitter to my pool of pet-sitters collection
+- As a user, I want to be able to remove a pet-sitter from my pool of pet-sitters collection
 - As a user, I want to be able to view the list of all the pet-sitters in the pool
 - As a user, I want to be able to select and view all detailed information of a specific pet-sitter
 - As a user, I want to be able to update the information of a specific pet-sitter
-- As a user, I want to be able to rate a specific pet-sitter on a scale of 0 to 10
 
 

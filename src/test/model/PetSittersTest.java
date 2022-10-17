@@ -14,9 +14,9 @@ public class PetSittersTest {
     public void runBefore() {
         psList = new PetSitters();
         ps1 = new PetSitter("js", "John", "Smith",
-                "Vancouver", 2, 30);
+                "Vancouver", 2, 30.5);
         ps2 = new PetSitter("hp", "harry", "potter",
-                "London", 1, 16);
+                "London", 1, 16.0);
     }
 
     @Test
@@ -57,14 +57,14 @@ public class PetSittersTest {
 
     @Test
     public void testShowAllPetSitters(){
-        String output = "Full Name" + "\t" + "City " + "\t" + "Experience" + "\t" + "Hourly Rate"
-                + "\t" + "Rating" + "\n";
+        String output = "Pet-sitter ID" + "\t" + "Full Name" + "\t" + "City " + "\t" + "Experience" + "\t"
+                + "Hourly Rate" + "\t" + "Rating" + "\n";
         assertEquals(output, psList.showAllPetSitters());
         psList.addPetSitter(ps1);
-        output += "SMITH, John\tVancouver\t2\t30\t0\n";
+        output += "js1\tSMITH, John\tVancouver\t2\t30.5\t0\n";
         assertEquals(output, psList.showAllPetSitters());
         psList.addPetSitter(ps2);
-        output += "POTTER, Harry\tLondon\t1\t16\t0\n";
+        output += "hp2\tPOTTER, Harry\tLondon\t1\t16.0\t0\n";
         assertEquals(output, psList.showAllPetSitters());
     }
 }
