@@ -3,13 +3,13 @@ package model;
 // Represent a pet sitter with username (unchangeable), firstname, last name, experience, city, hourly rate, rating
 // Note: name should be unchangeable, if a pet sitter changed name later, a new instance should be created
 public class PetSitter {
-    private static int idStep = 1;
+    //private static int idStep = 1;
     private final String usrId;            // unchangeable username
     private final String firstName;        // first name of pet sitter
     private final String lastName;         // last name of pet sitter
     private String city;                   // city location of pet sitter
     private int experience;                // years of experience
-    private double hrRate;                    // hourly rate requested by pet sitter, o for volunteer pet sitters
+    private double hrRate;                 // hourly rate requested by pet sitter, o for volunteer pet sitters
     private int rating = 0;                // rating of pet sitter, default (no rating yet) is 0
 
     /*
@@ -18,7 +18,8 @@ public class PetSitter {
      * EFFECTS:  Create a new pet sitter with required information, with the names formatted
      */
     public PetSitter(String usrName, String firstName, String lastName, String city, int experience, double hrRate) {
-        this.usrId = usrName.toLowerCase() + (idStep++);
+        //this.usrId = usrName.toLowerCase() + (idStep++);
+        this.usrId = usrName.toLowerCase();
         this.firstName = firstName.substring(0, 1).toUpperCase() + firstName.substring(1).toLowerCase();
         this.lastName = lastName.toUpperCase();
         this.city = city;

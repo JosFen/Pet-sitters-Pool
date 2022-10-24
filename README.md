@@ -24,5 +24,8 @@ their own collections of pet-sitters found and used.
 - As a user, I want to be able to view the list of all the pet-sitters in the pool
 - As a user, I want to be able to select and view all detailed information of a specific pet-sitter
 - As a user, I want to be able to update the information of a specific pet-sitter
+- As a user, I want to have the option to save my most recently pet-sitter list to file when quit the application.
+- As a user, I want to be able to load the pet-sitter list from file when I start the application.
+
 
 

@@ -19,14 +19,14 @@ class PetSitterTest {
 
     @Test
     public void testConstructor() {
-        assertEquals("js1", testPetSitter1.getUsrId());
+        assertEquals("js", testPetSitter1.getUsrId());
         assertEquals("SMITH, John", testPetSitter1.getFullName());
         assertEquals("Vancouver", testPetSitter1.getCity());
         assertEquals(2, testPetSitter1.getExperience());
         assertEquals(30.5, testPetSitter1.getHrRate());
         assertEquals(0, testPetSitter1.getRating());
 
-        assertEquals("hp2", testPetSitter2.getUsrId());
+        assertEquals("hp", testPetSitter2.getUsrId());
         assertEquals("POTTER, Harry", testPetSitter2.getFullName());
         assertEquals("London", testPetSitter2.getCity());
         assertEquals(1, testPetSitter2.getExperience());
@@ -70,7 +70,7 @@ class PetSitterTest {
 
     @Test
     public void testDisplayPetSitter(){
-        assertEquals("js1" + "\t" + "SMITH, John\tVancouver\t2\t30.5\t0\n", testPetSitter1.displayPetSitter());
-        assertEquals("hp2" + "\t" + "POTTER, Harry\tLondon\t1\t16.0\t0\n", testPetSitter2.displayPetSitter());
+        assertEquals("js" + "\t" + "SMITH, John\tVancouver\t2\t30.5\t0\n", testPetSitter1.displayPetSitter());
+        assertEquals("hp" + "\t" + "POTTER, Harry\tLondon\t1\t16.0\t0\n", testPetSitter2.displayPetSitter());
     }
 }

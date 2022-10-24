@@ -50,9 +50,9 @@ public class PetSittersTest {
     public void testGetPetSitter() {
         psList.addPetSitter(ps1);
         psList.addPetSitter(ps2);
-        assertEquals(ps1, psList.getPetSitter("js1"));
-        assertEquals(ps2, psList.getPetSitter("hp2"));
-        assertEquals(null, psList.getPetSitter("xy3"));
+        assertEquals(ps1, psList.getPetSitter("js"));
+        assertEquals(ps2, psList.getPetSitter("hp"));
+        assertNull(psList.getPetSitter("xy"));
     }
 
     @Test
@@ -61,10 +61,10 @@ public class PetSittersTest {
                 + "Hourly Rate" + "\t" + "Rating" + "\n";
         assertEquals(output, psList.showAllPetSitters());
         psList.addPetSitter(ps1);
-        output += "js1\tSMITH, John\tVancouver\t2\t30.5\t0\n";
+        output += "js\tSMITH, John\tVancouver\t2\t30.5\t0\n";
         assertEquals(output, psList.showAllPetSitters());
         psList.addPetSitter(ps2);
-        output += "hp2\tPOTTER, Harry\tLondon\t1\t16.0\t0\n";
+        output += "hp\tPOTTER, Harry\tLondon\t1\t16.0\t0\n";
         assertEquals(output, psList.showAllPetSitters());
     }
 }
