@@ -35,7 +35,11 @@ public class PetSitterApp {
             displayMenu();
             command = input.next();
             if (command.equals("6")) {
-                saveDataToFile();
+                System.out.println("Do you want to save updated list of pet-sitters? Enter y or n: ");
+                boolean toSave = input.next().equals("y");
+                if (toSave) {
+                    saveDataToFile();
+                }
                 letRunning = false;
             } else {
                 processCommand(command);
@@ -52,7 +56,12 @@ public class PetSitterApp {
         input.useDelimiter("\n");
         jsonWriter = new JsonWriter(JSON_LOCATION);
         jsonReader = new JsonReader(JSON_LOCATION);
-        loadDatabase();
+
+        System.out.println("Do you want to load existing pet-sitters from database? Enter y or n: ");
+        boolean toLoad = input.next().equals("y");
+        if (toLoad) {
+            loadDatabase();
+        }
     }
 
     // CITATION: modeled from https://github.students.cs.ubc.ca/CPSC210/JsonSerializationDemo.git
@@ -79,7 +88,6 @@ public class PetSitterApp {
         } catch (FileNotFoundException e) {
             System.out.println("Unable to write to file: " + JSON_LOCATION);
         }
-
     }
 
     // EFFECTS: displays menu of options to user
@@ -109,7 +117,6 @@ public class PetSitterApp {
         } else {
             System.out.println("Invalid selection! Please try again.");
         }
-
     }
 
     // EFFECTS: displays all pet-sitters currently in the pool
