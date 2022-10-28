@@ -1,10 +1,14 @@
 package model;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+import persistence.Writable;
+
 import java.util.ArrayList;
 import java.util.List;
 
 // Represent a collection of all PetSitters
-public class PetSitters {
+public class PetSitters implements Writable {
     private final List<PetSitter> petSitters;
 
     // EFFECTS: Create a pool of pet sitters
@@ -47,7 +51,7 @@ public class PetSitters {
     // EFFECTS: return a specific pet sitter by user
     public PetSitter getPetSitter(String usrId) {
         for (PetSitter ps : petSitters) {
-            if (ps.getUsrId().equals(usrId)) {
+            if (ps.getUserId().equals(usrId)) {
                 return ps;
             }
         }
@@ -62,5 +66,23 @@ public class PetSitters {
             petSitterPool += ps.displayPetSitter();
         }
         return petSitterPool;
+    }
+
+    // CITATION: referred https://github.students.cs.ubc.ca/CPSC210/JsonSerializationDemo.git
+    // EFFECTS: converts a PetSitters object to a JSON object
+    @Override
+    public JSONObject toJson() {
+        JSONObject jsonObj = new JSONObject();
+        jsonObj.put("petSitters", petSittersToJson());
+        return jsonObj;
+    }
+
+    // EFFECTS: returns pet-sitters list as a JSON array
+    private JSONArray petSittersToJson() {
+        JSONArray jsonArr = new JSONArray();
+        for (PetSitter ps : this.petSitters) {
+            jsonArr.put(ps.toJson());
+        }
+        return jsonArr;
     }
 }

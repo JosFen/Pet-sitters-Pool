@@ -23,9 +23,10 @@ their own collections of pet-sitters found and used.
 - As a user, I want to be able to remove a pet-sitter from my pool of pet-sitters collection
 - As a user, I want to be able to view the list of all the pet-sitters in the pool
 - As a user, I want to be able to select and view all detailed information of a specific pet-sitter
-- As a user, I want to be able to update the information of a specific pet-sitter
-- As a user, I want to have the option to save my most recently pet-sitter list to file when quit the application.
-- As a user, I want to be able to load the pet-sitter list from file when I start the application.
+- As a user, I want to be able to update the information of a specific pet-sitter 
+- As a user, I want to be able to load the pet-sitter list from the existing database when start the application.
+- As a user, I want to be able to save my most updated pet-sitter list to database file when quit the application.
+
 
 
 

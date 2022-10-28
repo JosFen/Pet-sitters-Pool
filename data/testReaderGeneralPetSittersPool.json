@@ -1,0 +1,22 @@
+{
+  "petSitters": [
+    {
+      "firstName": "Tom",
+      "lastName": "CAT",
+      "city": "Feline Kingdom",
+      "rating": 5,
+      "experience": 3,
+      "userId": "tc",
+      "hrRate": 25.8
+    },
+    {
+      "firstName": "Jerry",
+      "lastName": "MOUSE",
+      "city": "Rat Field",
+      "rating": 9,
+      "experience": 1,
+      "userId": "jm",
+      "hrRate": 15.2
+    }
+  ]
+}

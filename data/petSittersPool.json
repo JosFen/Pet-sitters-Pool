@@ -1,0 +1,9 @@
+{"petSitters": [{
+    "firstName": "Webber",
+    "lastName": "BOCH",
+    "city": "UBC",
+    "rating": 1,
+    "experience": 3,
+    "userId": "wb12",
+    "hrRate": 15
+}]}

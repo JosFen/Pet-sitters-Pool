@@ -1,0 +1,20 @@
+{"petSitters": [
+    {
+        "firstName": "John",
+        "lastName": "SMITH",
+        "city": "Vancouver",
+        "rating": 0,
+        "experience": 2,
+        "userId": "js",
+        "hrRate": 30.5
+    },
+    {
+        "firstName": "Harry",
+        "lastName": "POTTER",
+        "city": "London",
+        "rating": 9,
+        "experience": 1,
+        "userId": "hp",
+        "hrRate": 16
+    }
+]}

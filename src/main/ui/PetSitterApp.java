@@ -2,16 +2,23 @@ package ui;
 
 import model.PetSitter;
 import model.PetSitters;
+import persistence.JsonReader;
+import persistence.JsonWriter;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.Scanner;
 
 // Pet-Sitter Application
 public class PetSitterApp {
+    private static final String JSON_LOCATION = "./data/petSittersPool.json";
     private PetSitters psPool;
     private Scanner input;
+    private JsonWriter jsonWriter;
+    private JsonReader jsonReader;
 
     // EFFECTS: runs the PetSitter application
-    public PetSitterApp() {
+    public PetSitterApp() throws FileNotFoundException {
         runPetSitterApp();
     }
 
@@ -28,6 +35,7 @@ public class PetSitterApp {
             displayMenu();
             command = input.next();
             if (command.equals("6")) {
+                saveDataToFile();
                 letRunning = false;
             } else {
                 processCommand(command);
@@ -42,6 +50,36 @@ public class PetSitterApp {
         psPool = new PetSitters();
         input = new Scanner(System.in);
         input.useDelimiter("\n");
+        jsonWriter = new JsonWriter(JSON_LOCATION);
+        jsonReader = new JsonReader(JSON_LOCATION);
+        loadDatabase();
+    }
+
+    // CITATION: modeled from https://github.students.cs.ubc.ca/CPSC210/JsonSerializationDemo.git
+    // MODIFIES: psPool
+    // EFFECTS: load existing pet-sitters from file at the start of the application
+    public void loadDatabase() {
+        try {
+            psPool = jsonReader.read();
+            System.out.println("Loaded existing pet-sitters from " + JSON_LOCATION);
+        } catch (IOException e) {
+            System.out.println("Unable to read from file: " + JSON_LOCATION);
+        }
+    }
+
+    // CITATION: modeled from https://github.students.cs.ubc.ca/CPSC210/JsonSerializationDemo.git
+    // MODIFIES: this
+    // EFFECTS: save updated list of pet-sitters to file before exit the application
+    public void saveDataToFile() {
+        try {
+            jsonWriter.open();
+            jsonWriter.write(psPool);
+            jsonWriter.close();
+            System.out.println("Pet-sitters pool updated and saved to " + JSON_LOCATION);
+        } catch (FileNotFoundException e) {
+            System.out.println("Unable to write to file: " + JSON_LOCATION);
+        }
+
     }
 
     // EFFECTS: displays menu of options to user

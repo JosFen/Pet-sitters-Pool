@@ -1,10 +1,12 @@
 package model;
 
-// Represent a pet sitter with username (unchangeable), firstname, last name, experience, city, hourly rate, rating
+import org.json.JSONObject;
+import persistence.Writable;
+
+// Represent a pet sitter with userId (unchangeable), firstname, last name, experience, city, hourly rate, rating
 // Note: name should be unchangeable, if a pet sitter changed name later, a new instance should be created
-public class PetSitter {
-    //private static int idStep = 1;
-    private final String usrId;            // unchangeable username
+public class PetSitter implements Writable {
+    private final String userId;            // unchangeable usrId
     private final String firstName;        // first name of pet sitter
     private final String lastName;         // last name of pet sitter
     private String city;                   // city location of pet sitter
@@ -18,8 +20,7 @@ public class PetSitter {
      * EFFECTS:  Create a new pet sitter with required information, with the names formatted
      */
     public PetSitter(String usrName, String firstName, String lastName, String city, int experience, double hrRate) {
-        //this.usrId = usrName.toLowerCase() + (idStep++);
-        this.usrId = usrName.toLowerCase();
+        this.userId = usrName.toLowerCase();
         this.firstName = firstName.substring(0, 1).toUpperCase() + firstName.substring(1).toLowerCase();
         this.lastName = lastName.toUpperCase();
         this.city = city;
@@ -27,8 +28,8 @@ public class PetSitter {
         this.hrRate = hrRate;
     }
 
-    public String getUsrId() {
-        return this.usrId;
+    public String getUserId() {
+        return this.userId;
     }
 
     // EFFECTS: return full name of pet sitter in the format of LASTNAME, Firstname
@@ -88,7 +89,22 @@ public class PetSitter {
 
     // EFFECTS: show information of a specific pet sitter.
     public String displayPetSitter() {
-        return this.getUsrId() + "\t" + this.getFullName() + "\t" + this.getCity() + "\t" + this.getExperience()
+        return this.getUserId() + "\t" + this.getFullName() + "\t" + this.getCity() + "\t" + this.getExperience()
                 + "\t" + this.getHrRate() + "\t" + this.getRating() + "\n";
+    }
+
+    // CITATION: referred https://github.students.cs.ubc.ca/CPSC210/JsonSerializationDemo.git
+    // EFFECTS: converts a PetSitter object to a JSON object
+    @Override
+    public JSONObject toJson() {
+        JSONObject jsonObj = new JSONObject();
+        jsonObj.put("userId", userId);
+        jsonObj.put("firstName", firstName);
+        jsonObj.put("lastName", lastName);
+        jsonObj.put("city", city);
+        jsonObj.put("experience", experience);
+        jsonObj.put("hrRate", hrRate);
+        jsonObj.put("rating", rating);
+        return jsonObj;
     }
 }
