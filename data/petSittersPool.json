@@ -1,31 +1,38 @@
-{
-  "petSitters": [
+{"petSitters": [
     {
-      "firstName": "Mash",
-      "lastName": "MELLOW",
-      "city": "Cat Utopia",
-      "rating": 0,
-      "experience": 29,
-      "userId": "kitten007",
-      "hrRate": 45
+        "firstName": "Mash",
+        "lastName": "MELLOW",
+        "city": "Cat Utopia",
+        "rating": 0,
+        "experience": 29,
+        "userId": "kitten007",
+        "hrRate": 45
     },
     {
-      "firstName": "Goffrey",
-      "lastName": "DONALD",
-      "city": "Imagination",
-      "rating": 6,
-      "experience": 2,
-      "userId": "giddy911",
-      "hrRate": 16
+        "firstName": "Goffrey",
+        "lastName": "DONALD",
+        "city": "Imagination",
+        "rating": 6,
+        "experience": 2,
+        "userId": "giddy911",
+        "hrRate": 16
     },
     {
-      "firstName": "Nyanco",
-      "lastName": "NEKOCHAN",
-      "city": "Tokyo",
-      "rating": 0,
-      "experience": 35,
-      "userId": "nyan513",
-      "hrRate": 45.2
+        "firstName": "Nyanco",
+        "lastName": "NEKOCHAN",
+        "city": "Tokyo",
+        "rating": 0,
+        "experience": 35,
+        "userId": "nyan513",
+        "hrRate": 45.2
+    },
+    {
+        "firstName": "Moo",
+        "lastName": "DYLAN",
+        "city": "POCO",
+        "rating": 0,
+        "experience": 3,
+        "userId": "moody783",
+        "hrRate": 26.8
     }
-  ]
-}
+]}

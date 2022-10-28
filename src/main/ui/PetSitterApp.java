@@ -35,7 +35,7 @@ public class PetSitterApp {
             displayMenu();
             command = input.next();
             if (command.equals("6")) {
-                System.out.println("Do you want to save updated list of pet-sitters? Enter y or n: ");
+                System.out.print("Do you want to save updated list of pet-sitters? Enter y or n: ");
                 boolean toSave = input.next().equals("y");
                 if (toSave) {
                     saveDataToFile();
@@ -57,7 +57,7 @@ public class PetSitterApp {
         jsonWriter = new JsonWriter(JSON_LOCATION);
         jsonReader = new JsonReader(JSON_LOCATION);
 
-        System.out.println("Do you want to load existing pet-sitters from database? Enter y or n: ");
+        System.out.print("Do you want to load existing pet-sitters from database? Enter y or n: ");
         boolean toLoad = input.next().equals("y");
         if (toLoad) {
             loadDatabase();
