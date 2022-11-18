@@ -37,9 +37,13 @@ public class Gui extends WindowAdapter implements ActionListener {
     private JsonReader jsonReader;
 
     private final JFrame mainWin;
+    private JButton delBtn;
+    private JTextField delInputField;
     private JPanel addPanel;
-    private JComboBox sortBy;
     private JTextField[] addFields;
+    private JPanel displayPanel;
+    private JComboBox sortBy;
+    private JScrollPane scrollDisplayPane;
 
     private final ImageIcon msgIcon = new ImageIcon("./data/pawprint.png"); // icons from www.flaticon.com
 //
@@ -154,19 +158,19 @@ public class Gui extends WindowAdapter implements ActionListener {
         delPanel.setLayout(null);
         delPanel.setBounds(5, 5, 340, 50);
         delPanel.setBackground(Color.LIGHT_GRAY);
-        JTextField delInputField = new JTextField("Id of Pet-sitter to be deleted:");
+        delInputField = new JTextField("Id of Pet-sitter to be deleted:");
         delInputField.setFont(new Font("monospace", Font.ITALIC, 12));
         delInputField.setBounds(10, 5, 220, 40);
 
         Icon delIcon = new ImageIcon("./data/delete.png");
-        JButton delBtn = new JButton(delIcon);  // icons from www.flaticon.com
+        delBtn = new JButton(delIcon);  // icons from www.flaticon.com
         delBtn.setText("DELETE");
+        delBtn.addActionListener(this);
         delBtn.setBounds(230, 5, 100, 40);
 
         delPanel.add(delInputField, BorderLayout.WEST);
         delPanel.add(delBtn, BorderLayout.EAST);
         mainWin.add(delPanel, BorderLayout.WEST);
-//        addActionsToButtons();
     }
 
     // MODIFIES: this
@@ -201,13 +205,12 @@ public class Gui extends WindowAdapter implements ActionListener {
         return addPanel;
     }
 
-
     // MODIFIES: this
     // EFFECTS: creates a display panel to show all the pet-sitters in the pool
     private void initializeDisplayPanel() {
         List<PetSitter> petSitters = psPool.getPetSitters();
 
-        JPanel displayPanel = new JPanel(new BorderLayout());
+        displayPanel = new JPanel(new BorderLayout());
         displayPanel.setBounds(350, 5, 650, 450);
 
         JPanel sortPanel = new JPanel();
@@ -250,19 +253,34 @@ public class Gui extends WindowAdapter implements ActionListener {
         psTable.setModel(tableModel);
         psTable.setBounds(350, 40, 650, 400);
 
-        JScrollPane scrollPane = new JScrollPane(psTable);
-        scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
-        scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+        scrollDisplayPane = new JScrollPane(psTable);
+        scrollDisplayPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
+        scrollDisplayPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
 
-        return scrollPane;
+        return scrollDisplayPane;
     }
-
-    private void addActionsToButtons() {
-    }
-
 
     @Override
     public void actionPerformed(ActionEvent e) {
+        if (e.getSource() == delBtn) {
+            removeAPetSitterFromPool();
+        }
+    }
 
+    // MODIFIES: this, psPool, scrollDisplayPane, displayPanel
+    // EFFECTS: removes a pet-sitter from the pool and remove from display panel
+    private void removeAPetSitterFromPool() {
+        String psUserIdEntered = delInputField.getText();
+        boolean isRemoved = psPool.removePetSitter(psPool.getPetSitter(psUserIdEntered));
+        if (isRemoved) {
+            displayPanel.remove(scrollDisplayPane);
+            displayPanel.add(createPSDisplayPanel(psPool.getPetSitters()), BorderLayout.CENTER);
+            displayPanel.repaint();
+            delInputField.setText("");
+            mainWin.setVisible(true);
+        } else {
+            JOptionPane.showMessageDialog(mainWin, "This pet-sitter does not exist!",
+                    "No Such Pet-sitter!", JOptionPane.WARNING_MESSAGE);
+        }
     }
 }
