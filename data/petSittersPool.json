@@ -1,14 +1,5 @@
 {"petSitters": [
     {
-        "firstName": "Mash",
-        "lastName": "MELLOW",
-        "city": "Cat Utopia",
-        "rating": 0,
-        "experience": 29,
-        "userId": "kitten007",
-        "hrRate": 45
-    },
-    {
         "firstName": "Goffrey",
         "lastName": "DONALD",
         "city": "Imagination",
@@ -34,5 +25,23 @@
         "experience": 3,
         "userId": "moody783",
         "hrRate": 26.8
+    },
+    {
+        "firstName": "Helo",
+        "lastName": "HOO",
+        "city": "ubc",
+        "rating": 0,
+        "experience": 34,
+        "userId": "ubcstudent-1",
+        "hrRate": 56
+    },
+    {
+        "firstName": "5",
+        "lastName": "5PEOPLE",
+        "city": "allalal",
+        "rating": 4,
+        "experience": 18,
+        "userId": "5th",
+        "hrRate": 21
     }
 ]}

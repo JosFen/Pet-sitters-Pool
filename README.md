@@ -24,9 +24,15 @@ their own collections of pet-sitters found and used.
 - As a user, I want to be able to view the list of all the pet-sitters in the pool
 - As a user, I want to be able to select and view all detailed information of a specific pet-sitter
 - As a user, I want to be able to update the information of a specific pet-sitter 
-- As a user, I want to be able to load the pet-sitter list from the existing database when start the application.
-- As a user, I want to be able to save my most updated pet-sitter list to database file when quit the application.
-
+- As a user, I want to be prompted with the option to load the existing pet-sitters from file when the application starts
+- As a user, I want to be prompted with the option to save my most updated pet-sitter list to file when quit the application
+***
+## Instructions for Grader
+- You can generate the first required event related to adding Xs to a Y by...
+- You can generate the second required event related to adding Xs to a Y by...
+- You can locate my visual component by...
+- You can save the state of my application by...
+- You can reload the state of my application by...
 
 
 
