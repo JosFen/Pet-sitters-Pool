@@ -34,5 +34,23 @@
         "experience": 34,
         "userId": "ubcstudent-1",
         "hrRate": 56
+    },
+    {
+        "firstName": "Aaaa",
+        "lastName": "BBBBB",
+        "city": "Vancity",
+        "rating": 2,
+        "experience": 9,
+        "userId": "test1",
+        "hrRate": 17
+    },
+    {
+        "firstName": "Ccc",
+        "lastName": "DDDDD",
+        "city": "mars",
+        "rating": 5,
+        "experience": 0,
+        "userId": "tst2",
+        "hrRate": 0
     }
 ]}

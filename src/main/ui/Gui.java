@@ -28,9 +28,9 @@ public class Gui extends WindowAdapter implements ActionListener {
             "First Name: ",
             "Last Name: ",
             "City: ",
-            "Rating: ",
             "Experience: ",
-            "Hourly Rate: "
+            "Hourly Rate: ",
+            "Rating"
     };
     private PetSitters psPool;
     private JsonWriter jsonWriter;
@@ -40,20 +40,13 @@ public class Gui extends WindowAdapter implements ActionListener {
     private JButton delBtn;
     private JTextField delInputField;
     private JPanel addPanel;
+    private JButton addBtn;
     private JTextField[] addFields;
     private JPanel displayPanel;
     private JComboBox sortBy;
     private JScrollPane scrollDisplayPane;
 
     private final ImageIcon msgIcon = new ImageIcon("./data/pawprint.png"); // icons from www.flaticon.com
-//
-//    private JTextField userIdField;
-//    private JTextField fnField;
-//    private JTextField lnField;
-//    private JTextField cityField;
-//    private JTextField ratingField;
-//    private JTextField expField;
-//    private JTextField hrRateField;
 
     public Gui() {
         mainWin = new JFrame("Pet-sitter Pool Management App");
@@ -83,7 +76,6 @@ public class Gui extends WindowAdapter implements ActionListener {
                 "Data Loading...", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, msgIcon);
 
         if (a == JOptionPane.NO_OPTION) {
-            System.out.println("no load");
             mainWin.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
         } else if (a == JOptionPane.YES_OPTION) {
             loadDatabase();
@@ -183,8 +175,9 @@ public class Gui extends WindowAdapter implements ActionListener {
         mainWin.add(createEntryFields(), BorderLayout.WEST);
 
         Icon addIcon = new ImageIcon("./data/add.png");  // icons from www.flaticon.com
-        JButton addBtn = new JButton(addIcon);
+        addBtn = new JButton(addIcon);
         addBtn.setText("ADD");
+        addBtn.addActionListener(this);
         addPanel.add(addBtn);
     }
 
@@ -265,22 +258,58 @@ public class Gui extends WindowAdapter implements ActionListener {
         if (e.getSource() == delBtn) {
             removeAPetSitterFromPool();
         }
+        if (e.getSource() == addBtn) {
+            addAPetSitterToPool();
+        }
     }
 
     // MODIFIES: this, psPool, scrollDisplayPane, displayPanel
-    // EFFECTS: removes a pet-sitter from the pool and remove from display panel
+    // EFFECTS: add a pet-sitter to the pool and show in the display panel instantly
+    //          show alert pop-up if the userId exists
+    private void addAPetSitterToPool() {
+        try {
+            String psUserName = addFields[0].getText();
+            String firstName = addFields[1].getText();
+            String lastName = addFields[2].getText();
+            String city = addFields[3].getText();
+            int experience = Integer.parseInt(addFields[4].getText());
+            double hrRate = Double.parseDouble(addFields[5].getText());
+            int rating = Integer.parseInt(addFields[6].getText());
+            PetSitter userPS = new PetSitter(psUserName, firstName, lastName, city, experience, hrRate);
+
+            if (psPool.addPetSitter(userPS)) {
+                userPS.setRating(rating);
+                repaintDisplayTable();
+            } else {
+                JOptionPane.showMessageDialog(mainWin, "This pet-sitter already exist!",
+                        "Fail to Add", JOptionPane.WARNING_MESSAGE);
+            }
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(mainWin, "Some info entered is not in valid form!",
+                    "Invalid Input!", JOptionPane.WARNING_MESSAGE);
+
+        }
+    }
+
+    // MODIFIES: this, psPool, scrollDisplayPane, displayPanel
+    // EFFECTS: removes a pet-sitter from the pool and remove from display panel instantly
     private void removeAPetSitterFromPool() {
         String psUserIdEntered = delInputField.getText();
         boolean isRemoved = psPool.removePetSitter(psPool.getPetSitter(psUserIdEntered));
         if (isRemoved) {
-            displayPanel.remove(scrollDisplayPane);
-            displayPanel.add(createPSDisplayPanel(psPool.getPetSitters()), BorderLayout.CENTER);
-            displayPanel.repaint();
-            delInputField.setText("");
-            mainWin.setVisible(true);
+            repaintDisplayTable();
         } else {
             JOptionPane.showMessageDialog(mainWin, "This pet-sitter does not exist!",
                     "No Such Pet-sitter!", JOptionPane.WARNING_MESSAGE);
         }
+    }
+
+    // MODIFIES: this,scrollDisplayPane, displayPanel
+    // EFFECTS: repaint pet-sitter display table
+    private void repaintDisplayTable() {
+        displayPanel.remove(scrollDisplayPane);
+        displayPanel.add(createPSDisplayPanel(psPool.getPetSitters()), BorderLayout.CENTER);
+        displayPanel.repaint();
+        mainWin.setVisible(true);
     }
 }

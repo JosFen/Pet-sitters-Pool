@@ -3,6 +3,8 @@ package model;
 import org.json.JSONObject;
 import persistence.Writable;
 
+import java.util.Objects;
+
 // Represent a pet sitter with userId (unchangeable), firstname, last name, experience, city, hourly rate, rating
 // Note: name should be unchangeable, if a pet sitter changed name later, a new instance should be created
 public class PetSitter implements Writable {
@@ -106,5 +108,22 @@ public class PetSitter implements Writable {
         jsonObj.put("hrRate", hrRate);
         jsonObj.put("rating", rating);
         return jsonObj;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (!(o instanceof PetSitter)) {
+            return false;
+        }
+        PetSitter petSitter = (PetSitter) o;
+        return getUserId().equals(petSitter.getUserId());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getUserId());
     }
 }
