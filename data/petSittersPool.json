@@ -1,5 +1,23 @@
 {"petSitters": [
     {
+        "firstName": "Emm",
+        "lastName": "ABERDEEN",
+        "city": "Richmond",
+        "rating": 9,
+        "experience": 7,
+        "userId": "a1",
+        "hrRate": 39
+    },
+    {
+        "firstName": "Aaaa",
+        "lastName": "BBBBB",
+        "city": "Vancity",
+        "rating": 2,
+        "experience": 9,
+        "userId": "test1",
+        "hrRate": 17
+    },
+    {
         "firstName": "Ccc",
         "lastName": "DDDDD",
         "city": "mars",
@@ -25,24 +43,6 @@
         "experience": 3,
         "userId": "moody783",
         "hrRate": 26.8
-    },
-    {
-        "firstName": "Emm",
-        "lastName": "ABERDEEN",
-        "city": "Richmond",
-        "rating": 9,
-        "experience": 7,
-        "userId": "a1",
-        "hrRate": 39
-    },
-    {
-        "firstName": "Aaaa",
-        "lastName": "BBBBB",
-        "city": "Vancity",
-        "rating": 2,
-        "experience": 9,
-        "userId": "test1",
-        "hrRate": 17
     },
     {
         "firstName": "Helo",

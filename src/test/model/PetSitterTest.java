@@ -4,6 +4,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
 class PetSitterTest {
     private PetSitter testPS1;
@@ -74,5 +75,16 @@ class PetSitterTest {
                 testPS1.displayPetSitter());
         assertEquals("hapo\t" + "POTTER, Harry\tLondon\t1\t16.0\t0\n",
                 testPS2.displayPetSitter());
+    }
+
+    @Test
+    public void testEqualsAndHashCode() {
+        PetSitter testPS3 = new PetSitter("josm", "John", "Smith",
+                "Vancouver", 2, 30.5);
+        assertNotEquals(testPS1, "josm");
+        assertEquals(testPS1, testPS3);
+        assertEquals(testPS1.hashCode(), testPS3.hashCode());
+        assertNotEquals(testPS1.hashCode(), testPS2.hashCode());
+        assertNotEquals(testPS2.hashCode(), testPS3.hashCode());
     }
 }
