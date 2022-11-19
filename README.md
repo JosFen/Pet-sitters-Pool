@@ -26,13 +26,18 @@ their own collections of pet-sitters found and used.
 - As a user, I want to be able to update the information of a specific pet-sitter 
 - As a user, I want to be prompted with the option to load the existing pet-sitters from file when the application starts
 - As a user, I want to be prompted with the option to save my most updated pet-sitter list to file when quit the application
+- As a user, I want to be able to sort pet-sitters and show the result in the display panel
 ***
 ## Instructions for Grader
-- You can generate the first required event related to adding Xs to a Y by...
-- You can generate the second required event related to adding Xs to a Y by...
-- You can locate my visual component by...
-- You can save the state of my application by...
-- You can reload the state of my application by...
+- You can remove a pet-sitter from the pool by enter the User Id and click button *DELETE*,  
+the result will be updated autonomously in the display panel on the right
+- You can add pet-sitters to the pool by filling the form fields in the bottom left corner and click button *ADD*,  
+the result will be updated autonomously in the display panel on the right
+- You can sort the pet-sitters in the pool by choosing a sorting criterion from option box in the right top,  
+the result will be updated autonomously in the display panel on the right
+- You can locate images on the *DELETE* and *ADD* buttons, as well in the pop-up windows for loading and saving data
+- You can save the state of my application by click "Yes" when the application closing
+- You can reload the state of my application by click "Yes" when the application opens
 
 
 
