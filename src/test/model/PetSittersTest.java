@@ -30,6 +30,8 @@ public class PetSittersTest {
         assertEquals(2, psList.getPetSittersNum());
         assertFalse(psList.addPetSitter(ps1));
         assertFalse(psList.addPetSitter(ps2));
+
+        assertFalse(psList.getPetSitters().contains("josm"));
     }
 
     @Test
