@@ -1,5 +1,14 @@
 {"petSitters": [
     {
+        "firstName": "Emm",
+        "lastName": "ABERDEEN",
+        "city": "Richmond",
+        "rating": 9,
+        "experience": 7,
+        "userId": "a1",
+        "hrRate": 39
+    },
+    {
         "firstName": "Goffrey",
         "lastName": "DONALD",
         "city": "Imagination",
@@ -7,15 +16,6 @@
         "experience": 2,
         "userId": "giddy911",
         "hrRate": 16
-    },
-    {
-        "firstName": "Nyanco",
-        "lastName": "NEKOCHAN",
-        "city": "Tokyo",
-        "rating": 0,
-        "experience": 35,
-        "userId": "nyan513",
-        "hrRate": 45.2
     },
     {
         "firstName": "Moo",
@@ -27,13 +27,13 @@
         "hrRate": 26.8
     },
     {
-        "firstName": "Helo",
-        "lastName": "HOO",
-        "city": "ubc",
+        "firstName": "Nyanco",
+        "lastName": "NEKOCHAN",
+        "city": "Tokyo",
         "rating": 0,
-        "experience": 34,
-        "userId": "ubcstudent-1",
-        "hrRate": 56
+        "experience": 35,
+        "userId": "nyan513",
+        "hrRate": 45.2
     },
     {
         "firstName": "Aaaa",
@@ -52,5 +52,14 @@
         "experience": 0,
         "userId": "tst2",
         "hrRate": 0
+    },
+    {
+        "firstName": "Helo",
+        "lastName": "HOO",
+        "city": "ubc",
+        "rating": 0,
+        "experience": 34,
+        "userId": "ubcstudent-1",
+        "hrRate": 56
     }
 ]}

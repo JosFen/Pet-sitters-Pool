@@ -15,6 +15,7 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.Comparator;
 import java.util.List;
 
 // Represents the graphical user interface for pet-sitter pool management app
@@ -50,7 +51,6 @@ public class Gui extends WindowAdapter implements ActionListener {
 
     public Gui() {
         mainWin = new JFrame("Pet-sitter Pool Management App");
-//        initiateAppBg();
         mainWin.setSize(WIDTH, HEIGHT);
         mainWin.setLayout(null);
 
@@ -134,16 +134,6 @@ public class Gui extends WindowAdapter implements ActionListener {
     }
 
     // MODIFIES: this
-    // EFFECTS: creates background image for the App
-    private void initiateAppBg() {
-        // image source: pixabay.com
-        JLabel background = new JLabel(new ImageIcon("./data/paws.png"));
-        background.setBounds(0, 0, 350, 500);
-        mainWin.add(background);
-        background.setLayout(new FlowLayout());
-    }
-
-    // MODIFIES: this
     // EFFECTS: creates the menu panel for the app
     private void initializeDeletePanel() {
         JPanel delPanel = new JPanel();
@@ -170,7 +160,7 @@ public class Gui extends WindowAdapter implements ActionListener {
     private void initializeAddPanel() {
         addPanel = new JPanel(new GridLayout(8, 1));
         addPanel.setBorder(new EmptyBorder(20, 20, 20, 20));
-        addPanel.setBounds(5, 60, 340, 400);
+        addPanel.setBounds(5, 60, 340, 395);
         addPanel.setBackground(Color.LIGHT_GRAY);
         mainWin.add(createEntryFields(), BorderLayout.WEST);
 
@@ -198,7 +188,7 @@ public class Gui extends WindowAdapter implements ActionListener {
         return addPanel;
     }
 
-    // MODIFIES: this
+    // MODIFIES: this, displayPanel, sortBy
     // EFFECTS: creates a display panel to show all the pet-sitters in the pool
     private void initializeDisplayPanel() {
         List<PetSitter> petSitters = psPool.getPetSitters();
@@ -209,7 +199,7 @@ public class Gui extends WindowAdapter implements ActionListener {
         JPanel sortPanel = new JPanel();
         sortPanel.add(new JLabel("Choose an option to sort: "));
         sortBy = new JComboBox<>(sortOptions);
-        sortBy.setBounds(350, 5, 400, 30);
+        sortBy.addActionListener(this);
         sortPanel.add(sortBy);
         sortPanel.setBackground(Color.LIGHT_GRAY);
         displayPanel.add(sortPanel, BorderLayout.NORTH);
@@ -244,7 +234,7 @@ public class Gui extends WindowAdapter implements ActionListener {
 
         JTable psTable = new JTable();
         psTable.setModel(tableModel);
-        psTable.setBounds(350, 40, 650, 400);
+        psTable.setBounds(350, 50, 650, 400);
 
         scrollDisplayPane = new JScrollPane(psTable);
         scrollDisplayPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
@@ -253,6 +243,7 @@ public class Gui extends WindowAdapter implements ActionListener {
         return scrollDisplayPane;
     }
 
+    // EFFECTS: react to different source and perform task accordingly
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == delBtn) {
@@ -261,6 +252,36 @@ public class Gui extends WindowAdapter implements ActionListener {
         if (e.getSource() == addBtn) {
             addAPetSitterToPool();
         }
+        if (e.getSource() == sortBy) {
+            sortPetSitters(psPool.getPetSitters());
+        }
+    }
+
+    // MODIFIES: this, psPool, scrollDisplayPane, displayPanel
+    // EFFECTS: sort psPool and repaint the display table
+    private void sortPetSitters(List<PetSitter> petSitters) {
+        String sortOptionSelected = (String) sortBy.getSelectedItem();
+        switch (sortOptionSelected) {
+            case "User Id":
+                petSitters.sort(Comparator.comparing(PetSitter::getUserId));
+                break;
+            case "Full Name":
+                petSitters.sort(Comparator.comparing(PetSitter::getFullName));
+                break;
+            case "City":
+                petSitters.sort(Comparator.comparing(PetSitter::getCity));
+                break;
+            case "Experience":
+                petSitters.sort(Comparator.comparing(PetSitter::getExperience));
+                break;
+            case "Hourly rate":
+                petSitters.sort(Comparator.comparing(PetSitter::getHrRate));
+                break;
+            case "Rating":
+                petSitters.sort(Comparator.comparing(PetSitter::getRating));
+                break;
+        }
+        repaintDisplayTable();
     }
 
     // MODIFIES: this, psPool, scrollDisplayPane, displayPanel
@@ -287,7 +308,6 @@ public class Gui extends WindowAdapter implements ActionListener {
         } catch (NumberFormatException e) {
             JOptionPane.showMessageDialog(mainWin, "Some info entered is not in valid form!",
                     "Invalid Input!", JOptionPane.WARNING_MESSAGE);
-
         }
     }
 
