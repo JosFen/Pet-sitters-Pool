@@ -5,6 +5,7 @@ import org.json.JSONObject;
 import persistence.Writable;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 
 // Represent a collection of all PetSitters
@@ -26,10 +27,12 @@ public class PetSitters implements Writable {
     }
 
     // MODIFIES: this
-    // EFFECTS: add a pet sitter object and return True if it does not exist yet; return False otherwise
+    // EFFECTS: add a pet sitter object, log the event and return True if it does not exist yet; return False otherwise
     public boolean addPetSitter(PetSitter ps) {
         if (!petSitters.contains(ps)) {
             petSitters.add(ps);
+            EventLog.getInstance().logEvent(new Event("A pet-sitter (UserID: "
+                    + ps.getUserId() + ") is added to the pool."));
             return true;
         } else {
             return false;
@@ -37,10 +40,12 @@ public class PetSitters implements Writable {
     }
 
     // MODIFIES: this
-    // EFFECTS: remove a pet sitter object and return True if it exists, return False otherwise
+    // EFFECTS: remove a pet sitter object, log the event and return True if it exists, return False otherwise,
     public boolean removePetSitter(PetSitter ps) {
         if (petSitters.contains(ps)) {
             petSitters.remove(ps);
+            EventLog.getInstance().logEvent(new Event("A pet-sitter (UserID: "
+                    + ps.getUserId() + ")  is removed from the pool."));
             return true;
         } else {
             return false;
@@ -85,4 +90,32 @@ public class PetSitters implements Writable {
         }
         return jsonArr;
     }
+
+    // REQUIRES: String option is one of "User Id", "Full Name", "City", "Experience", "Hourly rate", "Rating"
+    // MODIFIES: this, petSitters
+    // EFFECT:   sorts pet-sitters list with given sorting option, and log the event including the info of option
+    public void sortPetSitters(String option) {
+        switch (option) {
+            case "User Id":
+                petSitters.sort(Comparator.comparing(PetSitter::getUserId));
+                break;
+            case "Full Name":
+                petSitters.sort(Comparator.comparing(PetSitter::getFullName));
+                break;
+            case "City":
+                petSitters.sort(Comparator.comparing(PetSitter::getCity));
+                break;
+            case "Experience":
+                petSitters.sort(Comparator.comparing(PetSitter::getExperience));
+                break;
+            case "Hourly rate":
+                petSitters.sort(Comparator.comparing(PetSitter::getHrRate));
+                break;
+            case "Rating":
+                petSitters.sort(Comparator.comparing(PetSitter::getRating));
+                break;
+        }
+        EventLog.getInstance().logEvent(new Event("Pet-sitters pool is sorted by \"" + option + "\""));
+    }
+
 }

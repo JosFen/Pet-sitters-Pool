@@ -1,57 +1,30 @@
 {"petSitters": [
     {
-        "firstName": "Emm",
-        "lastName": "ABERDEEN",
-        "city": "Richmond",
-        "rating": 9,
-        "experience": 7,
-        "userId": "a1",
-        "hrRate": 39
-    },
-    {
-        "firstName": "Aaaa",
-        "lastName": "BBBBB",
-        "city": "Vancity",
-        "rating": 2,
-        "experience": 9,
-        "userId": "test1",
-        "hrRate": 17
-    },
-    {
-        "firstName": "Ccc",
-        "lastName": "DDDDD",
-        "city": "mars",
-        "rating": 5,
-        "experience": 0,
-        "userId": "tst2",
-        "hrRate": 0
-    },
-    {
-        "firstName": "Goffrey",
-        "lastName": "DONALD",
-        "city": "Imagination",
-        "rating": 6,
+        "firstName": "Mash",
+        "lastName": "MEOW",
+        "city": "bql",
+        "rating": 10,
         "experience": 2,
-        "userId": "giddy911",
-        "hrRate": 16
+        "userId": "kitty",
+        "hrRate": 15
     },
     {
-        "firstName": "Moo",
-        "lastName": "DYLAN",
-        "city": "POCO",
-        "rating": 0,
-        "experience": 3,
-        "userId": "moody783",
-        "hrRate": 26.8
+        "firstName": "Laaaa",
+        "lastName": "BONNE",
+        "city": "Poco",
+        "rating": 3,
+        "experience": 17,
+        "userId": "moo911",
+        "hrRate": 29
     },
     {
-        "firstName": "Helo",
-        "lastName": "HOO",
-        "city": "ubc",
-        "rating": 0,
-        "experience": 34,
-        "userId": "ubcstudent-1",
-        "hrRate": 56
+        "firstName": "Teddy",
+        "lastName": "SNOW",
+        "city": "van",
+        "rating": 5,
+        "experience": 20,
+        "userId": "aurora",
+        "hrRate": 38
     },
     {
         "firstName": "Nyanco",

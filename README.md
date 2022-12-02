@@ -38,6 +38,27 @@ the result will be updated autonomously in the display panel on the right
 - You can locate images on the *DELETE* and *ADD* buttons, as well in the pop-up windows for loading and saving data
 - You can save the state of my application by click "Yes" when the application closing
 - You can reload the state of my application by click "Yes" when the application opens
+***
+## Phase 4: Task 2
+- Sample log of the events that occur:
+
+Thu Dec 01 18:05:26 PST 2022  
+A pet-sitter (UserID: kitty) is added to the pool.
+
+Thu Dec 01 18:05:51 PST 2022  
+A pet-sitter (UserID: hello)  is removed from the pool.
+
+Thu Dec 01 18:06:48 PST 2022   
+A pet-sitter (UserID: moo911) is added to the pool.
+
+Thu Dec 01 18:06:51 PST 2022   
+Pet-sitters pool is sorted by "Rating"
+
+Thu Dec 01 18:06:57 PST 2022   
+Pet-sitters pool is sorted by "Hourly rate"
+
+***
+## Phase 4: Task 3
 
 
 

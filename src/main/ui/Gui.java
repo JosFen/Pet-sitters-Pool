@@ -1,5 +1,7 @@
 package ui;
 
+import model.Event;
+import model.EventLog;
 import model.PetSitter;
 import model.PetSitters;
 import persistence.JsonReader;
@@ -15,7 +17,6 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.util.Comparator;
 import java.util.List;
 
 // Represents the graphical user interface for pet-sitter pool management app
@@ -98,7 +99,8 @@ public class Gui extends WindowAdapter implements ActionListener {
     }
 
     // MODIFIES: this
-    // EFFECTS: provide options in pop-up to save most recent pet-sitter list to file when quit the app
+    // EFFECTS: provide options in pop-up to save most recent pet-sitter list to file,
+    //          and print to the console all the logged events when quit the app
     public void windowClosing(WindowEvent e) {
         int a = JOptionPane.showConfirmDialog(mainWin, "Save updated list of pet-sitters? ",
                 "Data Saving...", JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE, msgIcon);
@@ -109,9 +111,22 @@ public class Gui extends WindowAdapter implements ActionListener {
             JOptionPane.showMessageDialog(mainWin, "Any update to the pet-sitters pool is abandoned.",
                     "Data Not Saved...", JOptionPane.WARNING_MESSAGE);
             mainWin.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            // print to the console all the events that have been logged
+            printLogToConsole(EventLog.getInstance());
+
         } else if (a == JOptionPane.YES_OPTION) {
             saveDataToFile();
             mainWin.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            // print to the console all the events that have been logged
+            printLogToConsole(EventLog.getInstance());
+        }
+    }
+
+    // Referred and modeled from AlarmSystem https://github.students.cs.ubc.ca/CPSC210/AlarmSystem
+    // EFFECTS: print all the logged events to the console when quit the app
+    private void printLogToConsole(EventLog el) {
+        for (Event next: el) {
+            System.out.println(next.toString() + "\n");
         }
     }
 
@@ -223,11 +238,10 @@ public class Gui extends WindowAdapter implements ActionListener {
             psInfoArr[i][5] = String.valueOf(ps.getRating());
         }
 
-        // Referred and modeled from https://stackoverflow.com/questions/1990817/how-to-make-a-jtable-non-editable
+        // CITATION: Referred and modeled from https://stackoverflow.com/questions/1990817/how-to-make-a-jtable-non-editable
         DefaultTableModel tableModel = new DefaultTableModel(psInfoArr, sortOptions) {
             @Override
             public boolean isCellEditable(int row, int column) {
-                //all cells false
                 return false;
             }
         };
@@ -253,34 +267,15 @@ public class Gui extends WindowAdapter implements ActionListener {
             addAPetSitterToPool();
         }
         if (e.getSource() == sortBy) {
-            sortPetSitters(psPool.getPetSitters());
+            sortDisplay();
         }
     }
 
     // MODIFIES: this, psPool, scrollDisplayPane, displayPanel
     // EFFECTS: sort psPool and repaint the display table
-    private void sortPetSitters(List<PetSitter> petSitters) {
+    private void sortDisplay() {
         String sortOptionSelected = (String) sortBy.getSelectedItem();
-        switch (sortOptionSelected) {
-            case "User Id":
-                petSitters.sort(Comparator.comparing(PetSitter::getUserId));
-                break;
-            case "Full Name":
-                petSitters.sort(Comparator.comparing(PetSitter::getFullName));
-                break;
-            case "City":
-                petSitters.sort(Comparator.comparing(PetSitter::getCity));
-                break;
-            case "Experience":
-                petSitters.sort(Comparator.comparing(PetSitter::getExperience));
-                break;
-            case "Hourly rate":
-                petSitters.sort(Comparator.comparing(PetSitter::getHrRate));
-                break;
-            case "Rating":
-                petSitters.sort(Comparator.comparing(PetSitter::getRating));
-                break;
-        }
+        psPool.sortPetSitters(sortOptionSelected);
         repaintDisplayTable();
     }
 
