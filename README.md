@@ -46,7 +46,7 @@ Thu Dec 01 18:05:26 PST 2022
 A pet-sitter (UserID: kitty) is added to the pool.
 
 Thu Dec 01 18:05:51 PST 2022  
-A pet-sitter (UserID: hello)  is removed from the pool.
+A pet-sitter (UserID: hello) is removed from the pool.
 
 Thu Dec 01 18:06:48 PST 2022   
 A pet-sitter (UserID: moo911) is added to the pool.

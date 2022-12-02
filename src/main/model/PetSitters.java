@@ -45,7 +45,7 @@ public class PetSitters implements Writable {
         if (petSitters.contains(ps)) {
             petSitters.remove(ps);
             EventLog.getInstance().logEvent(new Event("A pet-sitter (UserID: "
-                    + ps.getUserId() + ")  is removed from the pool."));
+                    + ps.getUserId() + ") is removed from the pool."));
             return true;
         } else {
             return false;

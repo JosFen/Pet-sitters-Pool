@@ -4,6 +4,8 @@ import org.json.JSONObject;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.util.Iterator;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 public class PetSittersTest {
@@ -14,10 +16,10 @@ public class PetSittersTest {
     @BeforeEach
     public void runBefore() {
         psList = new PetSitters();
-        ps1 = new PetSitter("josm", "John", "Smith",
+        ps1 = new PetSitter("jodo", "John", "doe",
                 "Vancouver", 2, 30.5);
         ps2 = new PetSitter("hapo", "harry", "potter",
-                "London", 1, 16.0);
+                "London", 1, 46.0);
     }
 
     @Test
@@ -25,13 +27,18 @@ public class PetSittersTest {
         assertTrue(psList.addPetSitter(ps1));
         assertTrue(psList.getPetSitters().contains(ps1));
         assertEquals(1, psList.getPetSittersNum());
+
         assertTrue(psList.addPetSitter(ps2));
         assertTrue(psList.getPetSitters().contains(ps2));
         assertEquals(2, psList.getPetSittersNum());
+
+        Iterator<Event> itr = EventLog.getInstance().iterator();
+        assertEquals("A pet-sitter (UserID: jodo) is added to the pool.", itr.next().getDescription());
+        assertEquals("A pet-sitter (UserID: hapo) is added to the pool.", itr.next().getDescription());
+
         assertFalse(psList.addPetSitter(ps1));
         assertFalse(psList.addPetSitter(ps2));
-
-        assertFalse(psList.getPetSitters().contains("josm"));
+        assertFalse(psList.getPetSitters().contains("jodo"));
     }
 
     @Test
@@ -39,6 +46,8 @@ public class PetSittersTest {
         psList.addPetSitter(ps1);
         psList.addPetSitter(ps2);
         assertEquals(2, psList.getPetSittersNum());
+
+        EventLog.getInstance().clear();
         assertTrue(psList.removePetSitter(ps1));
         assertFalse(psList.removePetSitter(ps1));
         assertFalse(psList.getPetSitters().contains(ps1));
@@ -47,6 +56,11 @@ public class PetSittersTest {
         assertFalse(psList.removePetSitter(ps2));
         assertFalse(psList.getPetSitters().contains(ps2));
         assertEquals(0, psList.getPetSittersNum());
+
+        Iterator<Event> itr = EventLog.getInstance().iterator();
+        itr.next();
+        assertEquals("A pet-sitter (UserID: jodo) is removed from the pool.", itr.next().getDescription());
+        assertEquals("A pet-sitter (UserID: hapo) is removed from the pool.", itr.next().getDescription());
     }
 
     @Test
@@ -64,10 +78,10 @@ public class PetSittersTest {
                 + "Hourly Rate" + "\t" + "Rating" + "\n";
         assertEquals(output, psList.showAllPetSitters());
         psList.addPetSitter(ps1);
-        output += "josm\tSMITH, John\tVancouver\t2\t30.5\t0\n";
+        output += "jodo\tDOE, John\tVancouver\t2\t30.5\t0\n";
         assertEquals(output, psList.showAllPetSitters());
         psList.addPetSitter(ps2);
-        output += "hapo\tPOTTER, Harry\tLondon\t1\t16.0\t0\n";
+        output += "hapo\tPOTTER, Harry\tLondon\t1\t46.0\t0\n";
         assertEquals(output, psList.showAllPetSitters());
     }
 
@@ -90,5 +104,47 @@ public class PetSittersTest {
         assertEquals(ps1.getExperience(), jsonPS1.getInt("experience"));
         assertEquals(ps1.getHrRate(), jsonPS1.getDouble("hrRate"));
         assertEquals(ps1.getRating(), jsonPS1.getInt("rating"));
+    }
+
+    @Test
+    public void testSortPetSitters() {
+        psList.addPetSitter(ps1);
+        psList.addPetSitter(ps2);
+        EventLog.getInstance().clear();
+
+        psList.sortPetSitters("User Id");
+        assertEquals(ps2, psList.getPetSitters().get(0));
+        assertEquals(ps1, psList.getPetSitters().get(1));
+
+        psList.sortPetSitters("Full Name");
+        assertEquals(ps1, psList.getPetSitters().get(0));
+        assertEquals(ps2, psList.getPetSitters().get(1));
+
+        psList.sortPetSitters("City");
+        assertEquals(ps2, psList.getPetSitters().get(0));
+        assertEquals(ps1, psList.getPetSitters().get(1));
+
+        psList.sortPetSitters("Hourly rate");
+        assertEquals(ps1, psList.getPetSitters().get(0));
+        assertEquals(ps2, psList.getPetSitters().get(1));
+
+        psList.sortPetSitters("Experience");
+        assertEquals(ps2, psList.getPetSitters().get(0));
+        assertEquals(ps1, psList.getPetSitters().get(1));
+
+        ps2.setRating(1);
+
+        psList.sortPetSitters("Rating");
+        assertEquals(ps1, psList.getPetSitters().get(0));
+        assertEquals(ps2, psList.getPetSitters().get(1));
+
+        Iterator<Event> itr = EventLog.getInstance().iterator();
+        itr.next();
+        assertEquals("Pet-sitters pool is sorted by \"User Id\"", itr.next().getDescription());
+        assertEquals("Pet-sitters pool is sorted by \"Full Name\"", itr.next().getDescription());
+        assertEquals("Pet-sitters pool is sorted by \"City\"", itr.next().getDescription());
+        assertEquals("Pet-sitters pool is sorted by \"Hourly rate\"", itr.next().getDescription());
+        assertEquals("Pet-sitters pool is sorted by \"Experience\"", itr.next().getDescription());
+        assertEquals("Pet-sitters pool is sorted by \"Rating\"", itr.next().getDescription());
     }
 }

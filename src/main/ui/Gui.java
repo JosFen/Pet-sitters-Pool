@@ -111,13 +111,13 @@ public class Gui extends WindowAdapter implements ActionListener {
             JOptionPane.showMessageDialog(mainWin, "Any update to the pet-sitters pool is abandoned.",
                     "Data Not Saved...", JOptionPane.WARNING_MESSAGE);
             mainWin.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-            // print to the console all the events that have been logged
+
             printLogToConsole(EventLog.getInstance());
 
         } else if (a == JOptionPane.YES_OPTION) {
             saveDataToFile();
             mainWin.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-            // print to the console all the events that have been logged
+
             printLogToConsole(EventLog.getInstance());
         }
     }
