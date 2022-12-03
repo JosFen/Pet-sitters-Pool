@@ -114,6 +114,8 @@ public class PetSitters implements Writable {
             case "Rating":
                 petSitters.sort(Comparator.comparing(PetSitter::getRating));
                 break;
+            default:
+                break;
         }
         EventLog.getInstance().logEvent(new Event("Pet-sitters pool is sorted by \"" + option + "\""));
     }

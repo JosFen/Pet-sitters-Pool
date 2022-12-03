@@ -40,8 +40,8 @@ the result will be updated autonomously in the display panel on the right
 - You can reload the state of my application by click "Yes" when the application opens
 ***
 ## Phase 4: Task 2
-- Sample log of the events that occur:
-
+***Sample log of the events that occur:***
+```
 Thu Dec 01 18:05:26 PST 2022  
 A pet-sitter (UserID: kitty) is added to the pool.
 
@@ -56,9 +56,17 @@ Pet-sitters pool is sorted by "Rating"
 
 Thu Dec 01 18:06:57 PST 2022   
 Pet-sitters pool is sorted by "Hourly rate"
-
+```
 ***
 ## Phase 4: Task 3
+***Reflection on refactoring to improve design:***
+
+- Refactor `Gui` class into three individual class modules (`Add`, `Delete`, `Display`), each with its own ActionListener   
+to improve cohesion.
+- Refactor `Display` class module further into two individual class modules (`sortSelection`, `scrollTable`) to make relevant  
+functions and features self-contained, so as to improve cohesion and reduce dependencies.
+- For `write()` method in `JsonWriter` class, change the parameter from `PetSitters` type to `JSONObject` type to reduce  
+dependency and to make JsonWriter more universally usable.
 
 
 
