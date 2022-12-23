@@ -7,7 +7,6 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
 
-// CITATION: referred and modeled from https://github.students.cs.ubc.ca/CPSC210/JsonSerializationDemo.git
 // Represents a writer that writes JSON representation of PetSitters to file
 public class JsonWriter {
     private static final int TAB = 4;

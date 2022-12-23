@@ -86,7 +86,6 @@ public class Gui extends WindowAdapter implements ActionListener {
         mainWin.setVisible(true);
     }
 
-    // CITATION: modeled from https://github.students.cs.ubc.ca/CPSC210/JsonSerializationDemo.git
     // MODIFIES: psPool
     // EFFECTS: load existing pet-sitters from file at the start of the application
     public void loadDatabase() {
@@ -122,15 +121,13 @@ public class Gui extends WindowAdapter implements ActionListener {
         }
     }
 
-    // Referred and modeled from AlarmSystem https://github.students.cs.ubc.ca/CPSC210/AlarmSystem
     // EFFECTS: print all the logged events to the console when quit the app
     private void printLogToConsole(EventLog el) {
-        for (Event next: el) {
+        for (Event next : el) {
             System.out.println(next.toString() + "\n");
         }
     }
 
-    // CITATION: modeled from https://github.students.cs.ubc.ca/CPSC210/JsonSerializationDemo.git
     // MODIFIES: this
     // EFFECTS: save updated list of pet-sitters to file before exit the application
     public void saveDataToFile() {

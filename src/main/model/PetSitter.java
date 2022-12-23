@@ -95,7 +95,7 @@ public class PetSitter implements Writable {
                 + "\t" + this.getHrRate() + "\t" + this.getRating() + "\n";
     }
 
-    // CITATION: referred https://github.students.cs.ubc.ca/CPSC210/JsonSerializationDemo.git
+
     // EFFECTS: converts a PetSitter object to a JSON object
     @Override
     public JSONObject toJson() {

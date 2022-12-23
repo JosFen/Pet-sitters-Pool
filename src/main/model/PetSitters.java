@@ -73,7 +73,7 @@ public class PetSitters implements Writable {
         return petSitterPool;
     }
 
-    // CITATION: referred https://github.students.cs.ubc.ca/CPSC210/JsonSerializationDemo.git
+
     // EFFECTS: converts a PetSitters object to a JSON object
     @Override
     public JSONObject toJson() {

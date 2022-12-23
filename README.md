@@ -27,46 +27,7 @@ their own collections of pet-sitters found and used.
 - As a user, I want to be prompted with the option to load the existing pet-sitters from file when the application starts
 - As a user, I want to be prompted with the option to save my most updated pet-sitter list to file when quit the application
 - As a user, I want to be able to sort pet-sitters and show the result in the display panel
-***
-## Instructions for Grader
-- You can remove a pet-sitter from the pool by enter the User Id and click button *DELETE*,  
-the result will be updated autonomously in the display panel on the right
-- You can add pet-sitters to the pool by filling the form fields in the bottom left corner and click button *ADD*,  
-the result will be updated autonomously in the display panel on the right
-- You can sort the pet-sitters in the pool by choosing a sorting criterion from option box in the right top,  
-the result will be updated autonomously in the display panel on the right
-- You can locate images on the *DELETE* and *ADD* buttons, as well in the pop-up windows for loading and saving data
-- You can save the state of my application by click "Yes" when the application closing
-- You can reload the state of my application by click "Yes" when the application opens
-***
-## Phase 4: Task 2
-***Sample log of the events that occur:***
-```
-Thu Dec 01 18:05:26 PST 2022  
-A pet-sitter (UserID: kitty) is added to the pool.
 
-Thu Dec 01 18:05:51 PST 2022  
-A pet-sitter (UserID: hello) is removed from the pool.
-
-Thu Dec 01 18:06:48 PST 2022   
-A pet-sitter (UserID: moo911) is added to the pool.
-
-Thu Dec 01 18:06:51 PST 2022   
-Pet-sitters pool is sorted by "Rating"
-
-Thu Dec 01 18:06:57 PST 2022   
-Pet-sitters pool is sorted by "Hourly rate"
-```
-***
-## Phase 4: Task 3
-***Reflection on refactoring to improve design:***
-
-- Refactor `Gui` class into three individual class modules (`Add`, `Delete`, `Display`), each with its own ActionListener   
-to improve cohesion.
-- Refactor `Display` class module further into two individual class modules (`sortSelection`, `scrollTable`) to make relevant  
-functions and features self-contained, so as to improve cohesion and reduce dependencies.
-- For `write()` method in `JsonWriter` class, change the parameter from `PetSitters` type to `JSONObject` type to reduce  
-dependency and to make JsonWriter more universally usable.
 
 
 

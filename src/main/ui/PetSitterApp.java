@@ -24,7 +24,6 @@ public class PetSitterApp {
 
     // MODIFIES: this
     // EFFECTS: processes user input
-    // inspired by CPSC210 TellerApp class: TellerApp, method: runTeller()
     private void runPetSitterApp() {
         boolean letRunning = true;
         String command;
@@ -64,7 +63,6 @@ public class PetSitterApp {
         }
     }
 
-    // CITATION: modeled from https://github.students.cs.ubc.ca/CPSC210/JsonSerializationDemo.git
     // MODIFIES: psPool
     // EFFECTS: load existing pet-sitters from file at the start of the application
     public void loadDatabase() {
@@ -76,7 +74,6 @@ public class PetSitterApp {
         }
     }
 
-    // CITATION: modeled from https://github.students.cs.ubc.ca/CPSC210/JsonSerializationDemo.git
     // MODIFIES: this
     // EFFECTS: save updated list of pet-sitters to file before exit the application
     public void saveDataToFile() {
