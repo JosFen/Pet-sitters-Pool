@@ -28,7 +28,3 @@ their own collections of pet-sitters found and used.
 - As a user, I want to be prompted with the option to save my most updated pet-sitter list to file when quit the application
 - As a user, I want to be able to sort pet-sitters and show the result in the display panel
 
-
-
-
-# Pet-sitters-Pool
